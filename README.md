@@ -38,11 +38,11 @@ cmake -S . -B build
 cmake --build build -j
 ```
 
-With newer GCC versions the bundled Matplot++ does not compile without the `<cstdint>` header.
-In that case configure with:
+With newer GCC versions the bundled Matplot++ does not compile without the `<cstdint>` header,
+and CMake 4 rejects the old minimum version declared by the bundled SDL. In that case configure with:
 
 ```bash
-cmake -S . -B build -DCMAKE_CXX_FLAGS="-include cstdint"
+cmake -S . -B build -DCMAKE_CXX_FLAGS="-include cstdint" -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 ```
 
 Run from the repository root so the program finds the sound files:
