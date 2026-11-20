@@ -14,11 +14,11 @@ Uint32 wavLength2 = 0;
 SDL_AudioDeviceID deviceId = 0;
 
 bool loadWavFiles() {
-    if (SDL_LoadWAV("C:/Users/natal/OneDrive/Pulpit/normal.wav", &wavSpec, &wavStart, &wavLength) == nullptr) {
+    if (SDL_LoadWAV("PlanarQuadrotor/normal.wav", &wavSpec, &wavStart, &wavLength) == nullptr) {
         std::cerr << "Error loading normal.wav: " << SDL_GetError() << std::endl;
         return false;
     }
-    if (SDL_LoadWAV("C:/Users/natal/OneDrive/Pulpit/slow.wav", &wavSpec2, &wavStart2, &wavLength2) == nullptr) {
+    if (SDL_LoadWAV("PlanarQuadrotor/slow.wav", &wavSpec2, &wavStart2, &wavLength2) == nullptr) {
         std::cerr << "Error loading slow.wav: " << SDL_GetError() << std::endl;
         return false;
     }
