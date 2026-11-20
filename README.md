@@ -4,6 +4,10 @@ Symulacja quadrotora w płaszczyźnie 2D sterowanego dyskretnym regulatorem **LQ
 Kliknięcie w oknie ustawia nowy punkt docelowy (flaga), a regulator prowadzi drona do celu,
 stabilizując jego położenie i orientację. Po locie można wyświetlić wykres przebytej trajektorii.
 
+<p align="center">
+  <img src="docs/flight.gif" alt="Przelot drona do punktu docelowego" width="640" />
+</p>
+
 ![C++](https://img.shields.io/badge/C++17-00599C?logo=cplusplus&logoColor=white)
 ![Eigen](https://img.shields.io/badge/Eigen-3.4-informational)
 ![SDL2](https://img.shields.io/badge/SDL2-grafika%20i%20d%C5%BAwi%C4%99k-1D4F8C)
@@ -28,6 +32,13 @@ git clone --recursive https://github.com/praha6248/planar-quadrotor-lqr.git
 cd planar-quadrotor-lqr
 cmake -S . -B build
 cmake --build build -j
+```
+
+Na nowszych wersjach GCC dołączona wersja Matplot++ nie kompiluje się bez nagłówka `<cstdint>`.
+Wtedy skonfiguruj projekt tak:
+
+```bash
+cmake -S . -B build -DCMAKE_CXX_FLAGS="-include cstdint"
 ```
 
 Uruchamiaj z katalogu głównego repozytorium, żeby program znalazł pliki dźwiękowe:
