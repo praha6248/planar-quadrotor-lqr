@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    name: Model & LQR unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure (core + tests only, no submodules needed)
+        run: cmake -S . -B build -DPQ_BUILD_APP=OFF -DPQ_BUILD_TESTS=ON
+      - name: Build
+        run: cmake --build build -j
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+  simulator:
+    name: Full simulator build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Configure
+        run: >
+          cmake -S . -B build
+          -DCMAKE_CXX_FLAGS="-include cstdint"
+          -DMATPLOTPP_BUILD_EXAMPLES=OFF
+          -DMATPLOTPP_BUILD_TESTS=OFF
+      - name: Build
+        run: cmake --build build -j --target planar_quadrotor
